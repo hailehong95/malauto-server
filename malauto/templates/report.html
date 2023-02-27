@@ -1,0 +1,671 @@
+<title>Report Page</title>
+{% extends "template.html" %}
+{% block content %}
+<!-- Menu start -->
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-0">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <h5 class="content-header-title float-left pr-1 mb-0">Report</h5>
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="bx bx-home-alt"></i></a></li>
+                        <li class="breadcrumb-item"><a
+                                href="/{{employee_item.campaign_id}}">{{employee_item.campaign_id}}</a></li>
+                        <li class="breadcrumb-item active">{{employee_item.employee_id}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Menu end -->
+
+<!-- Basic tabs start -->
+<section id="basic-tabs-components">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" aria-controls="info"
+                           role="tab" aria-selected="true">
+                            <i class="bx bx-laptop align-middle"></i>
+                            <span class="align-middle">Info</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="autoruns-tab" data-toggle="tab" href="#autoruns"
+                           aria-controls="autoruns" role="tab" aria-selected="false">
+                            <i class="bx bxs-terminal align-middle"></i>
+                            <span class="align-middle">Autoruns</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="process-tab" data-toggle="tab" href="#process" aria-controls="process"
+                           role="tab" aria-selected="false">
+                            <i class="bx bxs-server align-middle"></i>
+                            <span class="align-middle">Process</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="networking-tab" data-toggle="tab" href="#networking"
+                           aria-controls="networking" role="tab" aria-selected="false">
+                            <i class="bx bx-station align-middle"></i>
+                            <span class="align-middle">Networking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" aria-controls="files"
+                           role="tab" aria-selected="false">
+                            <i class="bx bxs-file align-middle"></i>
+                            <span class="align-middle">Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="eventlogs-tab" data-toggle="tab" href="#eventlogs"
+                           aria-controls="eventlogs" role="tab" aria-selected="false">
+                            <i class="bx bxs-notepad align-middle"></i>
+                            <span class="align-middle">EventLogs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="lasactivity-tab" data-toggle="tab" href="#lastactivity"
+                           aria-controls="lastactivity" role="tab" aria-selected="false">
+                            <i class="bx bx-log-out-circle align-middle"></i>
+                            <span class="align-middle">LastActivity</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="addons-tab" data-toggle="tab" href="#addons" aria-controls="addons"
+                           role="tab" aria-selected="false">
+                            <i class="bx bx-extension align-middle"></i>
+                            <span class="align-middle">Addons</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" aria-controls="comment"
+                           role="tab" aria-selected="false">
+                            <i class="bx bxl-discourse align-middle"></i>
+                            <span class="align-middle">Comment</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="info" aria-labelledby="info-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-info" class="table zero-configuration">
+                                                        <tr>
+                                                            <th>ID:</th>
+                                                            <td>{{employee_item.employee_id}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Name:</th>
+                                                            <td>{{employee_item.full_name}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Group:</th>
+                                                            <td>{{employee_item.group_name}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Verified By:</th>
+                                                            <td>{{employee_item.verified}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Computer Name:</th>
+                                                            <td>{{employee_info.host_name}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>OS Name:</th>
+                                                            <td>{{employee_info.os_name}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>OS Version:</th>
+                                                            <td>{{employee_info.os_version}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Username:</th>
+                                                            <td>{{employee_info.registered_owner}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Install Date:</th>
+                                                            <td>{{employee_info.original_install_date}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Manufacturer:</th>
+                                                            <td>{{employee_info.system_manufacturer}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>System Type:</th>
+                                                            <td>{{employee_info.system_type}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Processor(s):</th>
+                                                            <td>{{employee_info.processor|safe}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Memory:</th>
+                                                            <td>{{employee_info.total_physical_memory}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Domain:</th>
+                                                            <td>{{employee_info.domain}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Hotfix(s):</th>
+                                                            <td>{{employee_info.hotfix|safe}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Network Card(s):</th>
+                                                            <td>{{employee_info.network_card|safe}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Physical Address:</th>
+                                                            <td>{{employee_info.macaddress|safe}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-info').DataTable();
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="autoruns" aria-labelledby="autoruns-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-autoruns" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Virustotal</th>
+                                                            <th>Signer</th>
+                                                            <th>MD5 Hash</th>
+                                                            <th>Image Path</th>
+                                                            <th>Time</th>
+                                                            <th>Entry Location</th>
+                                                            <th>Enabled</th>
+                                                            <th>Category</th>
+                                                            <th>Company</th>
+                                                            <th>Launch String</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        {% for item in autoruns_info %}
+                                                        <tr>
+                                                            <td>{{item.virustotal}}</td>
+                                                            <td>{{item.signer}}</td>
+                                                            <td>
+                                                                <a href="https://www.virustotal.com/gui/file/{{item.md5_hash}}/detection"
+                                                                   target="_blank">{{item.md5_hash}}</a></td>
+                                                            <td>{{item.image_path}}</td>
+                                                            <td>{{item.time}}</td>
+                                                            <td>{{item.entry_location}}</td>
+                                                            <td>{{item.enabled}}</td>
+                                                            <td>{{item.category}}</td>
+                                                            <td>{{item.company}}</td>
+                                                            <td>{{item.launch_string}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-autoruns').DataTable({
+                                                                "pageLength": 100
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="process" aria-labelledby="process-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-process" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Virustotal</th>
+                                                            <th>Verified</th>
+                                                            <th>Image Hash</th>
+                                                            <th>Company</th>
+                                                            <th>PID</th>
+                                                            <th>Process Name</th>
+                                                            <th>Username</th>
+                                                            <th>Description</th>
+                                                            <th>Command Line</th>
+                                                            <th>Process Path</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for x in process_info %}
+                                                        <tr>
+                                                            <td>{{x.virustotal}}</td>
+                                                            <td>{{x.verified}}</td>
+                                                            <td>
+                                                                <a href="https://www.virustotal.com/gui/file/{{x.md5_hash}}/detection"
+                                                                   target="_blank">{{x.md5_hash}}</a></td>
+                                                            <td>{{x.company}}</td>
+                                                            <td>{{x.pid}}</td>
+                                                            <td>{{x.process_name}}</td>
+                                                            <td>{{x.username}}</td>
+                                                            <td>{{x.description}}</td>
+                                                            <td>{{x.command_line}}</td>
+                                                            <td>{{x.path}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-process').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="networking" aria-labelledby="networking-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-networking" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Process Name</th>
+                                                            <th>PID</th>
+                                                            <th>Local Address</th>
+                                                            <th>Local Port</th>
+                                                            <th>Remote Address</th>
+                                                            <th>Remote Port</th>
+                                                            <th>State</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for n in network_info %}
+                                                        <tr>
+                                                            <td>{{n.process_name}}</td>
+                                                            <td>{{n.pid}}</td>
+                                                            <td>{{n.local_address}}</td>
+                                                            <td>{{n.local_port}}</td>
+                                                            <td>{{n.remote_address}}</td>
+                                                            <td>{{n.remote_port}}</td>
+                                                            <td>{{n.state}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-networking').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="files" aria-labelledby="files-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-files" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Virustotal</th>
+                                                            <th>Verified</th>
+                                                            <th>MD5 Hash</th>
+                                                            <th>Publisher</th>
+                                                            <th>Path</th>
+                                                            <th>Date</th>
+                                                            <th>Version</th>
+                                                            <th>Entropy</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for f in files_info %}
+                                                        <tr>
+                                                            <td>{{f.virustotal}}</td>
+                                                            <td>{{f.verified}}</td>
+                                                            <td>
+                                                                <a href="https://www.virustotal.com/gui/file/{{f.md5_hash}}/detection"
+                                                                   target="_blank">{{f.md5_hash}}</a></td>
+                                                            <td>{{f.publisher}}</td>
+                                                            <td>{{f.path}}</td>
+                                                            <td>{{f.date}}</td>
+                                                            <td>{{f.product_version}}</td>
+                                                            <td>{{f.entropy}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-files').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="eventlogs" aria-labelledby="eventlogs-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-eventlogs" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>EventID</th>
+                                                            <th>Time Created</th>
+                                                            <th>Log Name</th>
+                                                            <th>ProcessID</th>
+                                                            <th>Level Display</th>
+                                                            <th>Message</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for ev in eventlogs_info %}
+                                                        <tr>
+                                                            <td>{{ev.event_id}}</td>
+                                                            <td>{{ev.time_created}}</td>
+                                                            <td>{{ev.log_name}}</td>
+                                                            <td>{{ev.process_id}}</td>
+                                                            <td>{{ev.level_display_name}}</td>
+                                                            <td>{{ev.message}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-eventlogs').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="lastactivity" aria-labelledby="lasactivity-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-lastactivity" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Action Time</th>
+                                                            <th>Description</th>
+                                                            <th>File Name</th>
+                                                            <th>Full Path</th>
+                                                            <th>More Information</th>
+                                                            <th>File Extension</th>
+                                                            <th>Data Source</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for la in lastactivity_info %}
+                                                        <tr>
+                                                            <td>{{la.action_time}}</td>
+                                                            <td>{{la.description}}</td>
+                                                            <td>{{la.filename}}</td>
+                                                            <td>{{la.full_path}}</td>
+                                                            <td>{{la.more_information}}</td>
+                                                            <td>{{la.file_extension}}</td>
+                                                            <td>{{la.data_source}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-lastactivity').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="addons" aria-labelledby="addons-tab" role="tabpanel">
+                        <!-- Zero configuration table -->
+                        <section id="basic-datatable">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table id="tbl-addons" class="table zero-configuration">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Item ID</th>
+                                                            <th>Status</th>
+                                                            <th>Web Browser</th>
+                                                            <th>Addon Type</th>
+                                                            <th>Name</th>
+                                                            <th>Version</th>
+                                                            <th>Title</th>
+                                                            <th>Install Time</th>
+                                                            <th>Addon Filename</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for ao in addons_info %}
+                                                        <tr>
+                                                            <td>{{ao.item_id}}</td>
+                                                            <td>{{ao.status}}</td>
+                                                            <td>{{ao.web_browser}}</td>
+                                                            <td>{{ao.addon_type}}</td>
+                                                            <td>{{ao.name}}</td>
+                                                            <td>{{ao.version}}</td>
+                                                            <td>{{ao.title}}</td>
+                                                            <td>{{ao.install_time}}</td>
+                                                            <td>{{ao.addon_filename}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#tbl-addons').DataTable({"pageLength": 100});
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/ Zero configuration table -->
+                    </div>
+
+                    <div class="tab-pane" id="comment" aria-labelledby="comment-tab" role="tabpanel">
+                        <!-- Input Group Select start -->
+                        <form method="post" action="">
+                            <div class="col-md-12">
+                                <p><i>INFO: {{employee_item.full_name}} ({{employee_item.employee_id}}), Group:
+                                    {{employee_item.group_name}}, Result: <b>{{employee_item.result}}</b>, Last checked
+                                    by: {{employee_item.verified}}</i></p>
+                                </br>
+                                <h6><b>Select Category:</b></h6>
+                                <fieldset class="form-group">
+                                    <div class="input-group">
+                                        <!---->
+                                        {{ ctform.category(class="custom-select") }}
+                                        <div class="input-group-append">
+                                            {{ ctform.submit(class="btn btn-primary glow w-100 position-relative") }}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <!-- Input Group Select end -->
+
+                        <!-- user profile comments start -->
+                        </br>
+                        <hr>
+                        {% for cm in comment_info %}
+                        <div class="card-header user-profile-header pt-0">
+                            <!-- User Avatar -->
+                            <div class="avatar mr-50 align-top">
+                                <img src="{{ url_for('static', filename='app-assets/images/portrait/small/avatar-s-12.jpg') }}"
+                                     alt="avtar image" width="32" height="32">
+                                <span class="avatar-status-away"></span>
+                            </div>
+                            <!-- Username and time -->
+                            <div class="d-inline-block mt-25">
+                                <h6 class="mb-0 text-bold-500 font-small-3">{{cm.username}}</h6>
+                                <p class="text-muted"><small>{{cm.time}}</small></p>
+                            </div>
+                            <i class="cursor-pointer bx bx-dots-vertical-rounded float-right"></i>
+                        </div>
+                        <!-- message comment-->
+                        <div class="card-body py-0">
+                            <p>{{cm.content}}</p>
+                        </div>
+                        <div class="card-footer user-comment-footer pb-0">
+                            <i class="cursor-pointer bx bx-heart user-profile-like font-medium-4 align-middle"></i>
+                            <span class="ml-25">10</span>
+                            <span class="ml-1">reply</span>
+                        </div>
+                        <hr>
+                        {% endfor %}
+
+                        <!-- Comment textbox and button -->
+                        <form method="post" action="">
+                            <div class="form-group row align-items-center px-1">
+
+                                <!-- <div class="col-2 col-sm-1">
+                        <div class="avatar">
+                            <img src="{{ url_for('static', filename='app-assets/images/portrait/small/avatar-s-2.jpg') }}"
+                                alt="avtar images" width="32" height="32">
+                            <span class="avatar-status-online"></span>
+                        </div>
+                    </div> -->
+                                <div class="col-sm-10 col-10">
+                                    <!--  -->
+                                    {{ cmform.content(class="form-control", rows="2") }}
+                                </div>
+
+                                <div class="col-10 col-sm-2">
+                                    {{ cmform.submit(class="btn btn-primary glow w-100 position-relative") }}
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- user profile comments ends -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Basic Tag Input end -->
+{% endblock %}

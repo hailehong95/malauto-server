@@ -1,0 +1,64 @@
+<title>Home</title>
+{% extends "template.html" %}
+{% block content %}
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-0">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <h5 class="content-header-title float-left pr-1 mb-0">Home</h5>
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active">Home</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Zero configuration table -->
+<section id="basic-datatable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                <tr>
+                                    <th>ID#</th>
+                                    <th>Campaign</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in campaign_list %}
+                                <tr>
+                                    <td><a href="/{{ item.campaign_id }}">#{{item.campaign_id}}</a></td>
+                                    <td>{{item.campaign_name}}</td>
+                                    <td>{{item.start_date}}</td>
+                                    <td>{{item.end_date}}</td>
+                                    <td>
+                                        <div class="invoice-action"><a href="/{{ item.campaign_id }}"
+                                                                       class="invoice-action-view mr-1"><i
+                                                class="bx bx-show-alt"></i> Detail</a></div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Zero configuration table -->
+{% endblock %}

@@ -1,0 +1,121 @@
+<title>Campaign Page</title>
+{% extends "template.html" %}
+{% block content %}
+<!-- Menu start -->
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-0">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <h5 class="content-header-title float-left pr-1 mb-0">Campaign</h5>
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active">{{ employee_list[0].campaign_id }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Menu end -->
+<!-- Zero configuration table -->
+<section id="basic-datatable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                <tr>
+                                    <th>ID#</th>
+                                    <th>Name</th>
+                                    <th>Time</th>
+                                    <th>Platform</th>
+                                    <th>Group</th>
+                                    <th>Status</th>
+                                    <th>Result</th>
+                                    <th>Verified</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in employee_list %}
+                                <tr>
+                                    <td>
+                                        <a href="/{{ item.campaign_id }}/{{ item.employee_id }}">#{{item.employee_id}}</a>
+                                    </td>
+                                    <td>{{item.full_name}}</td>
+                                    <td>{{item.datetime}}</td>
+                                    <td>{{item.platform}}</td>
+
+                                    <!-- Support Group -->
+                                    {% if item.group_name.startswith('HN') %}
+                                    <td>
+                                        <span class="bullet bullet-danger bullet-sm"></span>
+                                        <small class="text-muted">{{item.group_name}}</small>
+                                    </td>
+                                    {% endif %}
+
+                                    <!-- Zamba Group -->
+                                    {% if item.group_name.startswith('HCM') %}
+                                    <td>
+                                        <span class="bullet bullet-success bullet-sm"></span>
+                                        <small class="text-muted">{{item.group_name}}</small>
+                                    </td>
+                                    {% endif %}
+
+                                    <!-- Status = scanning -->
+                                    {% if item.status == 'scanning' %}
+                                    <td><span class="badge badge-light-info badge-pill">{{item.status}}</span></td>
+                                    {% endif %}
+
+                                    <!-- Status = processing -->
+                                    {% if item.status == 'processing' %}
+                                    <td><span class="badge badge-light-dark badge-pill">{{item.status}}</span></td>
+                                    {% endif %}
+
+                                    <!-- Status = successful -->
+                                    {% if item.status == 'successful' %}
+                                    <td><span class="badge badge-light-success badge-pill">{{item.status}}</span></td>
+                                    {% endif %}
+
+                                    <!-- Result = infected -->
+                                    {% if item.result == 'infected' %}
+                                    <td><span class="badge badge-light-warning badge-pill">Infected</span></td>
+                                    {% endif %}
+
+                                    <!-- Result = clean -->
+                                    {% if item.result == 'clean' %}
+                                    <td><span class="badge badge-light-primary badge-pill">Clean</span></td>
+                                    {% endif %}
+
+                                    <!-- Result = unknown -->
+                                    {% if item.result == 'unknown' %}
+                                    <td><span class="badge badge-light-black badge-pill">Unknown</span></td>
+                                    {% endif %}
+
+                                    <td>{{item.verified}}</td>
+
+                                    <td>
+                                        <div class="invoice-action"><a
+                                                href="/{{ item.campaign_id }}/{{ item.employee_id }}"
+                                                class="invoice-action-view mr-1"><i class="bx bx-show-alt"></i> View</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Zero configuration table -->
+{% endblock %}

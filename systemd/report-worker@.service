@@ -1,0 +1,15 @@
+[Unit]
+Description=Malware Automation Check Report Worker %I
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/malauto-server
+Environment="PATH=/opt/malauto-server/venv/bin"
+
+ExecStart=/opt/malauto-server/venv/bin/rq worker report
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

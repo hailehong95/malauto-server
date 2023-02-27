@@ -1,0 +1,15 @@
+[Unit]
+Description=Malware Automation Check Server Application
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/malauto-server
+Environment="PATH=/opt/malauto-server/venv/bin"
+
+ExecStart=/opt/malauto-server/venv/bin/gunicorn -b unix:app.sock -m 007 -w 4 malauto:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
